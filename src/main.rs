@@ -6,9 +6,102 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader, ErrorKind, Write};
 
+fn sum_list(list: &Vec<i32>) -> i32 {
+    let mut sum = 0;
+    for i in list {
+        sum += *i;
+    }
+    return sum;
+}
+
 fn main() {
-    let st3 = String::from("x r t b h k k a m c");
-    let mut v1: Vec<char> = st3.chars().collect();
+    let num_list = vec![1, 2, 3, 4, 5];
+    println!("Sum of list = {}", sum_list(&num_list));
+}
+
+fn get_sum(x: i32, y: i32) {
+    println!("{} + {} = {}", x, y, x + y);
+}
+
+fn get_sum2(x: i32, y: i32) -> i32 {
+    x + y
+}
+
+fn get_2(x: i32) -> (i32, i32) {
+    (x + 1, x + 2)
+}
+
+fn sample18_main() {
+    get_sum(4, 5);
+    println!("{}", get_sum2(4, 5));
+
+    let (val_1, val_2 ) = get_2(3);
+    println!("Nums : {}, {}", val_1, val_2);
+}
+
+fn sample17_main() {
+    let vec1: Vec<i32> = Vec::new();
+    let mut vec2 = vec![1, 2, 3, 4];
+    vec2.push(5);
+    println!("1st : {}", vec2[0]);
+
+    let second: &i32 = &vec2[1];
+    match vec2.get(1) {
+        Some(second) => println!("2nd : {}", second),
+        None => println!("No 2nd value"),
+    }
+
+    for i in &mut vec2 {
+        *i *= 2;
+    }
+    for i in &mut vec2 {
+        println!("{}", i);
+    }
+    println!("Vec length : {}", vec2.len());
+    println!("Pop : {:?}", vec2.pop());
+
+}
+
+fn sample16_main() {
+    enum Days {
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday,
+    }
+
+    impl Days {
+        fn is_weekend(&self) -> bool {
+            match self {
+                Days::Saturday | Days::Sunday => true,
+                _ => false
+            }
+        }
+    }
+
+    let today: Days = Days::Monday;
+    match today {
+        Days::Monday => println!("Everyone hates Monday."),
+        Days::Tuesday => println!("Donat day."),
+        Days::Wednesday => println!("Hump day."),
+        Days::Thursday => println!("Pay day."),
+        Days::Friday => println!("Almost weekend."),
+        Days::Saturday => println!("Weekend."),
+        Days::Sunday => println!("Weekend."),
+    }
+
+    println!("Is today the weekend? {}", today.is_weekend());
+}
+
+fn sample15_main() {
+    let int_u8: u8 = 5;
+    let int2_u8: u8 = 4;
+    let int3_u32: u32 = (int_u8 as u32) + (int2_u8 as u32);
+
+    println!("int u32: {}", int3_u32);
 }
 
 fn sample14_main() {
@@ -20,6 +113,11 @@ fn sample14_main() {
     }
     let st2 = st1.replace("A", "Another");
     println!("{}", st2);
+
+    let st8 = String::from("Just some words");
+    for char in st8.bytes() {
+        println!("Byte: {}", char);
+    }
 }
 
 fn sample13_main() {
