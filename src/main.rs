@@ -6,6 +6,48 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader, ErrorKind, Write};
 
+use std::ops::Add;
+
+use std::collections::HashMap;
+
+fn main() {
+    let mut heroes = HashMap::new();
+    heroes.insert("Superman", "Clark Kent");
+    heroes.insert("Batman", "Bruce Wayne");
+    heroes.insert("Flash", "Barry Allen");
+
+    for (k, v) in heroes.iter() {
+        println!("{} = {}", k, v);
+    }
+}
+
+fn print_str(x: String) {
+    println!("A string {}", x);
+}
+
+fn print_return_str(x: String) -> String {
+    println!("A string {}", x);
+    x
+}
+
+fn change_string(name: &mut String) {
+    name.push_str(" is happy");
+    println!("Message : {}", name);
+}
+
+fn sample21_main() {
+    let mut str1 = String::from("Derek");
+    change_string(&mut str1);
+}
+
+fn get_sum_gen<T:Add<Output = T>>(x: T, y: T) -> T {
+    return x + y;
+}
+fn sample20_main() {
+    println!("5 + 4 = {}", get_sum_gen(5, 4));
+    println!("5.2 + 4.6 = {}", get_sum_gen(5.2, 4.6));
+}
+
 fn sum_list(list: &Vec<i32>) -> i32 {
     let mut sum = 0;
     for i in list {
@@ -14,7 +56,7 @@ fn sum_list(list: &Vec<i32>) -> i32 {
     return sum;
 }
 
-fn main() {
+fn sample19_main() {
     let num_list = vec![1, 2, 3, 4, 5];
     println!("Sum of list = {}", sum_list(&num_list));
 }
